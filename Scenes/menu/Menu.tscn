@@ -79,4 +79,5 @@ offset_bottom = -258.943
 theme = ExtResource("2_fcwyn")
 text = "Exit"
 
+[connection signal="pressed" from="Options/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Options/Exit" to="." method="_on_exit_pressed"]

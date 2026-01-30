@@ -2,6 +2,7 @@ extends Node
 
 func saveGame(path: String) -> void:
 	var saveFile = FileAccess.open(path, FileAccess.WRITE)
+	# game will save based on the game state Global Group
 	var saveNodes = get_tree().get_nodes_in_group("gameState")
 	for node in saveNodes:
 		if node.scene_file_path.is_empty():
