@@ -35,6 +35,8 @@ offset_bottom = 922.0
 text = "This is a test dialog. we should probably at least limit text to 2, maybe 3 sentences before it goes out of scope of this border."
 scroll_active = false
 
+[node name="TODO-dialog border" type="Node" parent="dialog" unique_id=239247889]
+
 [node name="options" type="Control" parent="." unique_id=1070552990]
 anchors_preset = 0
 offset_left = 200.0
