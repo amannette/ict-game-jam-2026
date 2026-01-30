@@ -1,6 +1,51 @@
-[gd_scene format=3 uid="uid://ciunqcnimr8xy"]
+[gd_scene format=3 uid="uid://dhxg0nr4weifk"]
 
-[ext_resource type="Script" uid="uid://bdw56wjo4gfww" path="res://Scenes/menu/menu.gd" id="1_v5dlt"]
+[ext_resource type="Script" uid="uid://bgc6qm1bmw8x3" path="res://Scenes/menu/menu.gd" id="1_v5dlt"]
 
-[node name="Menu" type="Node2D" unique_id=1305092087]
+[node name="Menu" type="Control" unique_id=627369201]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_v5dlt")
+
+[node name="Title" type="Label" parent="." unique_id=125305734]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 372.0
+offset_right = 172.0
+offset_bottom = 399.0
+text = "WORKING TITLE"
+
+[node name="Options" type="Control" parent="." unique_id=422722140]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="Options" unique_id=61794385]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 414.0
+offset_right = 199.0
+offset_bottom = 445.0
+text = "Start Game"
+
+[node name="Credits" type="Button" parent="Options" unique_id=848511768]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 465.0
+offset_right = 199.0
+offset_bottom = 496.0
+text = "Credits"
+
+[node name="Exit" type="Button" parent="Options" unique_id=559760512]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 519.0
+offset_right = 199.0
+offset_bottom = 550.0
+text = "Exit"
+
+[connection signal="pressed" from="Options/Exit" to="." method="_on_exit_pressed"]
