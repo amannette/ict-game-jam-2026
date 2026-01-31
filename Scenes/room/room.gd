@@ -11,7 +11,7 @@ var _is_fading := false
 
 signal movementButtonSignal
 
-var activeJunction = RoomManager.Juction
+var activeJunction = RoomManager.Junction
 
 func _ready() -> void:
 	crossFade(RoomManager.roomLibrary["reception"])

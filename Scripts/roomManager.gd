@@ -19,22 +19,22 @@ var dialgogueTree = {
 
 var NPCs = []
 var NPC = {
-	"Name" : "Defualt",
-	"Name_2" : "Defualt",
+	"name" : "Defualt",
+	"name_2" : "Defualt",
 	"dialoguePreference" : "Confrontational",
-	"DispositionRate" : 10,
-	"Expertise" : "",
-	"Department" : "Patient",
-	"Mood" : "Apathetic" , 
-	"DialogueState" : 0 #this is where the player is on this NPCs dialogue tree
+	"dispositionRate" : 10,
+	"expertise" : "",
+	"department" : "patient",
+	"mood" : "apathetic" , 
+	"dialogueState" : 0 #this is where the player is on this NPCs dialogue tree
 }
 
-var Juction = {
+var Junction = {
 	"name" : "",
 	"directions" : [],
-	"adjacentJunctions" : ["cafateria","hallway","lab","patient1"] ,
-	"NPCS" : [] ,	
-	"Items" : []
+	"adjacentJunctions" : ["cafeteria","hallway","lab","patient1"] ,
+	"npcs" : [] ,	
+	"items" : []
 }
 
 
@@ -55,7 +55,7 @@ var roomLibrary = {
 }
 
 func _enter_tree() -> void:
-	var admin = Juction.duplicate()
+	var admin = Junction.duplicate()
 	admin["name"] = "administration"
 	admin["directions"] = [1,5,6,7,8]
 	
@@ -65,24 +65,24 @@ func _enter_tree() -> void:
 		match i:
 			0:
 				NPCs.append(NPC.duplicate())
-				NPCs[i]["Name"] = "robert"
-				NPCs[i]["Name_2"] = "sanchez"
+				NPCs[i]["name"] = "robert"
+				NPCs[i]["name_2"] = "sanchez"
 				NPCs[i]["dialoguePreference"] = "Confrontational"
-				NPCs[i]["DispositionRate"] =  40
-				NPCs[i]["Expertise"] = "Civilian"
-				NPCs[i]["Department"] = "Civilian"
-				NPCs[i]["Mood"] = "Angry"
-				NPCs[i]["DialogueState"] = 0
+				NPCs[i]["dispositionRate"] =  40
+				NPCs[i]["expertise"] = "Civilian"
+				NPCs[i]["department"] = "Civilian"
+				NPCs[i]["mood"] = "Angry"
+				NPCs[i]["dialogueState"] = 0
 			1:
 				NPCs.append(NPC.duplicate())
-				NPCs[i]["Name"] = "robert"
-				NPCs[i]["Name_2"] = "sanchez"
+				NPCs[i]["name"] = "robert"
+				NPCs[i]["name_2"] = "sanchez"
 				NPCs[i]["dialoguePreference"] = "Confrontational"
-				NPCs[i]["DispositionRate"] =  40
-				NPCs[i]["Expertise"] = "Civilian"
-				NPCs[i]["Department"] = "Civilian"
-				NPCs[i]["Mood"] = "Angry"
-				NPCs[i]["DialogueState"] = 0
+				NPCs[i]["dispositionRate"] =  40
+				NPCs[i]["expertise"] = "Civilian"
+				NPCs[i]["department"] = "Civilian"
+				NPCs[i]["mood"] = "angry"
+				NPCs[i]["dialogueState"] = 0
 
 
 		
@@ -94,20 +94,16 @@ func onJunctionLoad(activeJunction):
 	
 	#save routine 
 	
-	
 	#load routine
-	
 	var JunctionName = activeJunction.Name
 	#look through save rewrite Junctions parameters with 
 	#populate room scene data with active junction data
-	
+
 func movementButtonEngaged(direction):
 	#move scene logic
 	activeJunction.Name = activeJunction["adjacentJunctions"][activeJunction["directions"][direction]]
 	#activeJunction = adjacentJunction[activeJunction["directions"][direction]]
 	pass
-	
-	
 
 
 #NPCs from benjamin

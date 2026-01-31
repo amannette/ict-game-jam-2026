@@ -30,6 +30,9 @@ func playMusic(trackName: String):
 		return
 	if musicTween and musicTween.is_running():
 		musicTween.kill()
+		currentPlayer.volume_db = 0
+		nextPlayer.volume_db = -80
+		currentPlayer.play()
 	
 	nextPlayer.stream = musicLibrary[trackName]
 	nextPlayer.volume_db = -80
@@ -38,7 +41,6 @@ func playMusic(trackName: String):
 	var tween = create_tween()
 	
 	tween.tween_property(currentPlayer, "volume_db", -80, fadeTime)
-	
 	tween.tween_property(nextPlayer, "volume_db", 0, fadeTime)
 	
 	tween.finished.connect(func():

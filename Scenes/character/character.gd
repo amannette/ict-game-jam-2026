@@ -4,9 +4,6 @@ extends Node2D
 @export var communicate = false
 
 @onready var characterSprite = $Sprite2D
-# TODO: refer to gameState to assign sprite to character
-
-# TODO: add click functionality by assigning a collisionShape2D
 
 func assignSprite() -> void:
 	# Assign Texture
