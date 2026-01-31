@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bmjwyhfidksl2" path="res://Scenes/UI/gameUI.tscn" id="1_oksfc"]
 [ext_resource type="Script" uid="uid://cyq2qlkyco7r2" path="res://Scenes/Rooms/roomParallax.gd" id="2_pcytu"]
 [ext_resource type="Texture2D" uid="uid://f7njo8fwwyq" path="res://Assets/temp/hospital-bed-getty-onurdongel.webp" id="2_y0bk0"]
-[ext_resource type="Texture2D" uid="uid://cl3yt5fym0m5e" path="res://Assets/temp/doctor.png" id="3_n4gft"]
+[ext_resource type="PackedScene" uid="uid://c1pk7supipygy" path="res://Scenes/character/character.tscn" id="4_pcytu"]
 
 [node name="RoomTemplate" type="Node2D" unique_id=1718267346]
 
@@ -14,6 +14,9 @@ top_level = true
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1725487271]
 script = ExtResource("2_pcytu")
+characterScene = ExtResource("4_pcytu")
+characterCount = 2
+startPos = Vector2(500, 800)
 
 [node name="background" type="Node2D" parent="Parallax2D" unique_id=2135513620]
 
@@ -21,10 +24,3 @@ script = ExtResource("2_pcytu")
 position = Vector2(987, 575)
 scale = Vector2(1.258, 1)
 texture = ExtResource("2_y0bk0")
-
-[node name="character" type="Node2D" parent="Parallax2D" unique_id=333768746]
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D/character" unique_id=607402029]
-position = Vector2(712.00006, 721)
-scale = Vector2(1.258, 1)
-texture = ExtResource("3_n4gft")
