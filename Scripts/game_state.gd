@@ -22,3 +22,23 @@ static var gameState: Dictionary = {
 		}
 	}
 }
+
+
+func onGlobalStateChange():
+	pass
+	#write to global state
+
+static var stateTemp: Dictionary = {
+	"worldState": {
+		"Junctions" : [], # [dictionarty : junction]
+		"time": {},
+		"date": {}
+	},
+	"npc": {
+		"name": {},
+		"dialog": {
+			# leave empty if line is not a conversation option
+			"playerOptions": {}
+		}
+	}
+}

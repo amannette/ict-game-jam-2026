@@ -1,4 +1,45 @@
 extends Node
+var directions = [0,1,2,3,4,5,6,7,8]
+#[Vector2(0.3437246,.848483),Vector2(0,1)]
+
+
+var activeJunction
+
+var dialogueOption = {
+	"isHidden" : false,
+	"text" : "",
+	"requiredEvents" : []
+}
+
+var dialgogueTree = {
+	"options" : [dialogueOption]
+}
+#[dialogtree1,dialogtree1,dialogtree1]
+
+
+var NPCs = []
+var NPC = {
+	"Name" : "Defualt",
+	"Name_2" : "Defualt",
+	"dialoguePreference" : "Confrontational",
+	"DispositionRate" : 10,
+	"Expertise" : "",
+	"Department" : "Patient",
+	"Mood" : "Apathetic" , 
+	"DialogueState" : 0 #this is where the player is on this NPCs dialogue tree
+}
+
+var Juction = {
+	"name" : "",
+	"directions" : [],
+	"adjacentJunctions" : ["cafateria","hallway","lab","patient1"] ,
+	"NPCS" : [] ,	
+	"Items" : []
+}
+
+
+
+
 
 var roomLibrary = {
 	"admin": preload("res://Assets/rooms/Admin.png"),
@@ -12,3 +53,100 @@ var roomLibrary = {
 	"reception2": preload("res://Assets/rooms/Reception2.png"),
 	"surgery": preload("res://Assets/rooms/Surgery.png")
 }
+
+func _enter_tree() -> void:
+	var admin = Juction.duplicate()
+	admin["name"] = "administration"
+	admin["directions"] = [1,5,6,7,8]
+	
+	#initialize NPCS
+	
+	for i in range(2):
+		match i:
+			0:
+				NPCs.append(NPC.duplicate())
+				NPCs[i]["Name"] = "robert"
+				NPCs[i]["Name_2"] = "sanchez"
+				NPCs[i]["dialoguePreference"] = "Confrontational"
+				NPCs[i]["DispositionRate"] =  40
+				NPCs[i]["Expertise"] = "Civilian"
+				NPCs[i]["Department"] = "Civilian"
+				NPCs[i]["Mood"] = "Angry"
+				NPCs[i]["DialogueState"] = 0
+			1:
+				NPCs.append(NPC.duplicate())
+				NPCs[i]["Name"] = "robert"
+				NPCs[i]["Name_2"] = "sanchez"
+				NPCs[i]["dialoguePreference"] = "Confrontational"
+				NPCs[i]["DispositionRate"] =  40
+				NPCs[i]["Expertise"] = "Civilian"
+				NPCs[i]["Department"] = "Civilian"
+				NPCs[i]["Mood"] = "Angry"
+				NPCs[i]["DialogueState"] = 0
+
+
+		
+		
+		
+	
+	
+func onJunctionLoad(activeJunction):
+	
+	#save routine 
+	
+	
+	#load routine
+	
+	var JunctionName = activeJunction.Name
+	#look through save rewrite Junctions parameters with 
+	#populate room scene data with active junction data
+	
+func movementButtonEngaged(direction):
+	#move scene logic
+	activeJunction.Name = activeJunction["adjacentJunctions"][activeJunction["directions"][direction]]
+	#activeJunction = adjacentJunction[activeJunction["directions"][direction]]
+	pass
+	
+	
+
+
+#NPCs from benjamin
+#[node name="NPC2" parent="." unique_id=1271583253 instance=ExtResource("2_u74th")]
+#Prefered_diologe_type = "Confrontational"
+#Disposition = 40
+#Name = "robert"
+#Name_2 = "sanchezz"
+#DispositionRate = 10
+#Expertise = "Civilian"
+#Department = "Civilian"
+#Mood = "Angry"
+#
+#[node name="NPC3" parent="." unique_id=965265231 instance=ExtResource("2_u74th")]
+#Prefered_diologe_type = "Inquisitive"
+#Disposition = 42
+#Name = "jim"
+#Name_2 = "tim"
+#DispositionRate = 2
+#Expertise = "Accountant"
+#Department = "Managment"
+#Mood = "Apathetic"
+#
+#[node name="NPC4" parent="." unique_id=324083473 instance=ExtResource("2_u74th")]
+#Prefered_diologe_type = "Vague"
+#Name = "mia"
+#Name_2 = "that depressed  nurse"
+#DispositionRate = 15
+#Mood = "Sad"
+#
+#[node name="NPC1" parent="." unique_id=1931630368 instance=ExtResource("2_u74th")]
+#Prefered_diologe_type = "Direct"
+#Disposition = 50
+#Name = "Janice"
+#Name_2 = "Jan"
+#DispositionRate = 5
+#Expertise = "Nurse"
+#Department = "Nurses"
+#Mood = "Cheerful"
+	
+
+	
