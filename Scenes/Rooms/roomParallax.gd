@@ -6,7 +6,6 @@ extends Parallax2D
 @export var sensitivity = 8
 @export var dampening = 5.0
 @export var characterCount = 3
-var charSpacing = Vector2(randf_range(200.0, 400.0), randf_range(1.0, 40.0))
 @export var startPos = Vector2(200, 300)
 
 var characters = []
@@ -21,7 +20,7 @@ func _ready() -> void:
 		if characterScene:
 			var charInstance = characterScene.instantiate()
 			add_child(charInstance)
-			
+			var charSpacing = Vector2(randf_range(200.0, 400.0), randf_range(1.0, 40.0))
 			var pos = startPos + charSpacing * i
 			charInstance.position = pos
 			

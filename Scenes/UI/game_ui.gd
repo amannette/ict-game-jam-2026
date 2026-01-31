@@ -1,14 +1,20 @@
 extends Control
 
-@onready var pause = get_node("pause")
-@onready var dialog = get_node("dialog")
-@onready var options = get_node("options")
+@onready var pause = $pause
+@onready var dialog = $dialog
+@onready var options = $options
 
 func hideControl() -> void:
 	pass
 	pause.visible = false
 	dialog.visible = false
 	options.visible = false
+
+func disableNode(node: Button):
+	node.disabled = true
+
+func revealNode(node: Control) -> void:
+	node.visible = true
 
 func _ready() -> void:
 	# Start every new scene with all UI not visible

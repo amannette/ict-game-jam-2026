@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cir6r66f5ktrs"]
 
+[ext_resource type="Script" uid="uid://b7b4k4iymiceg" path="res://Scenes/Rooms/room.gd" id="1_e02cn"]
 [ext_resource type="PackedScene" uid="uid://bmjwyhfidksl2" path="res://Scenes/UI/gameUI.tscn" id="1_oksfc"]
 [ext_resource type="Script" uid="uid://cyq2qlkyco7r2" path="res://Scenes/Rooms/roomParallax.gd" id="2_pcytu"]
 [ext_resource type="Texture2D" uid="uid://f7njo8fwwyq" path="res://Assets/temp/hospital-bed-getty-onurdongel.webp" id="2_y0bk0"]
 [ext_resource type="PackedScene" uid="uid://c1pk7supipygy" path="res://Scenes/character/character.tscn" id="4_pcytu"]
 
 [node name="RoomTemplate" type="Node2D" unique_id=1718267346]
+script = ExtResource("1_e02cn")
 
 [node name="GameUi" parent="." unique_id=1653777319 instance=ExtResource("1_oksfc")]
 top_level = true
@@ -15,7 +17,8 @@ top_level = true
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1725487271]
 script = ExtResource("2_pcytu")
 characterScene = ExtResource("4_pcytu")
-characterCount = 2
+sensitivity = 5
+characterCount = 0
 startPos = Vector2(500, 800)
 
 [node name="background" type="Node2D" parent="Parallax2D" unique_id=2135513620]
