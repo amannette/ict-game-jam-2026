@@ -19,6 +19,10 @@ startPos = Vector2(500, 800)
 
 [node name="background" type="Node2D" parent="Parallax2D" unique_id=2135513620]
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D/background" unique_id=2080803100]
+[node name="bg_a" type="Sprite2D" parent="Parallax2D/background" unique_id=2080803100]
+position = Vector2(960, 540)
+scale = Vector2(1.3, 1.3)
+
+[node name="bg_b" type="Sprite2D" parent="Parallax2D/background" unique_id=519933799]
 position = Vector2(960, 540)
 scale = Vector2(1.3, 1.3)

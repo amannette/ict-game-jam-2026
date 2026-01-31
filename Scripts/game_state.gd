@@ -1,23 +1,24 @@
 extends Node
 
-static var state: Dictionary = {
+static var gameState: Dictionary = {
 	"worldState": {
-		"room": {
+		"junction": {
 			"name": {},
 			"npcCount": {},
 			"canCommunicate": {},
-			"roomObject": {
-				"name": {}
-			}
+			"roomObject": "",
+			"nearby": {}
 		},
-		"time": {},
-		"date": {}
-	},
-	"npc": {
-		"name": {},
-		"dialog": {
-			# leave empty if line is not a conversation option
-			"playerOptions": {}
+		"npc": {
+			"name": {},
+			"dialog": {
+				# leave empty if line is not a conversation option
+				"playerOptions": {}
+			},
+			"room": {}
+		},
+		"player": {
+			
 		}
 	}
 }

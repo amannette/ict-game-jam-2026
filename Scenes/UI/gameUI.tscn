@@ -14,6 +14,7 @@ theme = ExtResource("1_rcnvp")
 script = ExtResource("2_nr13x")
 
 [node name="dialog" type="Control" parent="." unique_id=315729378]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -38,6 +39,7 @@ scroll_active = false
 [node name="TODO-dialog border" type="Node" parent="dialog" unique_id=239247889]
 
 [node name="options" type="Control" parent="." unique_id=1070552990]
+visible = false
 anchors_preset = 0
 offset_left = 200.0
 offset_top = 760.0
@@ -64,6 +66,7 @@ text = "Communicate"
 [node name="TODO_option background" type="Node" parent="options" unique_id=941472549]
 
 [node name="pause" type="Control" parent="." unique_id=217942632]
+visible = false
 anchors_preset = 0
 offset_left = 200.0
 offset_top = 760.0
@@ -89,6 +92,75 @@ layout_mode = 2
 text = "Exit
 "
 
+[node name="junction" type="Control" parent="." unique_id=602683987]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NJunction" type="Button" parent="junction" unique_id=1608902750]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 3.0
+offset_right = 1021.0
+offset_bottom = 52.0
+text = "NORTH"
+
+[node name="NEJunction" type="Button" parent="junction" unique_id=1229327253]
+layout_mode = 0
+offset_left = 1800.0
+offset_top = 3.0
+offset_right = 1919.0
+offset_bottom = 52.0
+text = "NORTH"
+
+[node name="NWJunction" type="Button" parent="junction" unique_id=190862519]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 126.0
+offset_bottom = 52.0
+text = "NORTH"
+
+[node name="WJunction" type="Button" parent="junction" unique_id=284707291]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 493.0
+offset_right = 126.0
+offset_bottom = 542.0
+text = "NORTH"
+
+[node name="EJunction" type="Button" parent="junction" unique_id=1993078371]
+layout_mode = 0
+offset_left = 1791.0
+offset_top = 493.0
+offset_right = 1910.0
+offset_bottom = 542.0
+text = "NORTH"
+
+[node name="SJunction" type="Button" parent="junction" unique_id=1246689953]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 956.0
+offset_right = 1021.0
+offset_bottom = 1005.0
+text = "NORTH"
+
+[node name="SEJunction" type="Button" parent="junction" unique_id=923740310]
+layout_mode = 0
+offset_left = 1800.0
+offset_top = 956.0
+offset_right = 1919.0
+offset_bottom = 1005.0
+text = "NORTH"
+
+[node name="SWJunction" type="Button" parent="junction" unique_id=1873872692]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 956.0
+offset_right = 126.0
+offset_bottom = 1005.0
+text = "NORTH"
+
 [node name="Label" type="Label" parent="." unique_id=249581073]
 layout_mode = 0
 offset_left = 1332.0
@@ -98,6 +170,7 @@ offset_bottom = 1057.0
 theme_override_font_sizes/font_size = 21
 text = "ESC: pause menu | Mouse: select item / continue dialog"
 
+[connection signal="pressed" from="options/optionList/movement" to="." method="_on_movement_pressed"]
 [connection signal="pressed" from="options/optionList/communicate" to="." method="_on_communicate_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Save" to="." method="_on_save_pressed"]

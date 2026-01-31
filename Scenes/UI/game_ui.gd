@@ -3,12 +3,14 @@ extends Control
 @onready var pause = $pause
 @onready var dialog = $dialog
 @onready var options = $options
+@onready var junction = $junction
 
 func hideControl() -> void:
 	pass
 	pause.visible = false
 	dialog.visible = false
 	options.visible = false
+	junction.visible = false
 
 func disableNode(node: Button):
 	node.disabled = true
@@ -27,7 +29,8 @@ func _process(_delta: float) -> void:
 
 # Pause functionality
 func _on_return_pressed() -> void:
-	# TODO: return back to game state
+	hideControl()
+	options.visible = true
 	pass # Replace with function body.
 
 
@@ -43,4 +46,10 @@ func _on_exit_pressed() -> void:
 func _on_communicate_pressed() -> void:
 	hideControl()
 	# TODO: set the character communicate to 1 (Need gamestate to access)
+	pass # Replace with function body.
+
+
+func _on_movement_pressed() -> void:
+	hideControl()
+	junction.visible = true
 	pass # Replace with function body.
