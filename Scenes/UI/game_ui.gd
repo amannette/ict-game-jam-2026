@@ -323,17 +323,17 @@ func enterDialogueWith(npc):
 
 
 func _on_southwest_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/southwest/Label.text
+	RoomManager.set_active_junction($junctions/southwest/Label.text)
 	hideControl()
 	options.visible = true
 
 func _on_west_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/west/Label.text
+	RoomManager.set_active_junction($junctions/west/Label.text)
 	hideControl()
 	options.visible = true
 
 func _on_northwest_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/northwest/Label.text
+	RoomManager.set_active_junction($junctions/northwest/Label.text)
 	hideControl()
 	options.visible = true
 
@@ -343,21 +343,21 @@ func _on_north_texture_button_pressed() -> void:
 	options.visible = true
 
 func _on_northeast_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/northeast/Label.text
+	RoomManager.set_active_junction($junctions/northeast/Label.text)
 	hideControl()
 	options.visible = true
 
 func _on_east_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/east/Label.text
+	RoomManager.set_active_junction($junctions/east/Label.text)
 	hideControl()
 	options.visible = true
 
 func _on_southeast_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/southeast/Label.text
+	RoomManager.set_active_junction($junctions/southeast/Label.text)
 	hideControl()
 	options.visible = true
 
 func _on_south_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/south/Label.text
+	RoomManager.set_active_junction($junctions/south/Label.text)
 	hideControl()
 	options.visible = true

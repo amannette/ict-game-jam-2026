@@ -1,30 +1,11 @@
 extends Node
 
-
-
-#NPC Dialogue System 
-#var janice = Reception.get_node("NPC1")
-#var robert = Reception.get_node("NPC2")
-#var jim = Reception.get_node("NPC3")
-#var mia = Reception.get_node("NPC4")
-#var jani = Reception.get_node("NPC5")
-#var sandi = Reception.get_node("NPC6")
-#var cheg = Reception.get_node("NPC7")
-#var johan = Reception.get_node("NPC8")
-#var angelo = Reception.get_node("NPC9")
-#var kyle = Reception.get_node("NPC10")
-#var phelicia = Reception.get_node("NPC11")
-#var criag = Reception.get_node("NPC12")
-#var hilda = Reception.get_node("NPC13")
-#var skye = Reception.get_node("NPC14")
-#
-#var NPC_PROFILES = [janice,robert,jim,mia,jani,sandi,cheg,johan,angelo,kyle,phelicia,criag,hilda,skye]
 var NPC_NAMES = ["janice","robert","jim","mia", "jani", "sandi","cheg", "johan", "angelo", "kyle", "phelicia", "craig", "hilda", "skye"] 
 
 #template for junction/room
 var Junction = {
 	"name" : "reception",
-	"directions" : [1,3,4,6], #eight directions [0,1,2,3,4,5,6,7] can be [n,s,e,w,ne,nw,se,sw] or [sw,w,nw,n,ne,e,se,s] starting from direction [-1,-1](sw) going clockwise in a circle
+	"directions" : [1,3,4,6], #eight directions [0,1,2,3,4,5,6,7]
 	"adjacentJunctions" : ["cafeteria","hallway","lab","patient1"] ,
 	"npcs" : ["robert","janice"] 
 }
@@ -38,13 +19,10 @@ func defineJunction(jname, directions, adjacentJunctions, npcs):
 	junct["npcs"] = npcs
 	return junct
 
-#which junction we are curently in
-
 func set_active_junction(junction_name: String) -> void:
 	if !Junctions.has(junction_name):
 		push_warning("Unknown junction: " + junction_name)
 		return
-
 	activeJunction = Junctions[junction_name]
 
 var roomLibrary = {
@@ -81,7 +59,6 @@ var characterLibrary = {
 
 #collection of all junctions
 
-
 var reception = defineJunction("reception",[0,1,3],["patient1","hallway","receptionDesk"],["janice","jim"])
 var receptionDesk = defineJunction("receptionDesk",[1,3,4],["reception","patient1","hallway"],["skye"])
 var patient1 = defineJunction("patient1",[3,4],["receptionDesk","patient2"],["mia","robert"])
@@ -108,13 +85,6 @@ var Junctions = {
 	"morgue" : morgue,
 	"lab" : lab,
 }
-	
+
 #we start off in reception room
 var activeJunction = Junctions["reception"]
-
-func _enter_tree() -> void:
-
-	pass
-
-	
-	
