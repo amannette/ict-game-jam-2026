@@ -1,34 +1,44 @@
 extends Node
-var directions = [0,1,2,3,4,5,6,7,8]
-#[Vector2(0.3437246,.848483),Vector2(0,1)]
 
 
 
+#NPC Dialogue System 
+#var janice = Reception.get_node("NPC1")
+#var robert = Reception.get_node("NPC2")
+#var jim = Reception.get_node("NPC3")
+#var mia = Reception.get_node("NPC4")
+#var jani = Reception.get_node("NPC5")
+#var sandi = Reception.get_node("NPC6")
+#var cheg = Reception.get_node("NPC7")
+#var johan = Reception.get_node("NPC8")
+#var angelo = Reception.get_node("NPC9")
+#var kyle = Reception.get_node("NPC10")
+#var phelicia = Reception.get_node("NPC11")
+#var criag = Reception.get_node("NPC12")
+#var hilda = Reception.get_node("NPC13")
+#var skye = Reception.get_node("NPC14")
+#
+#var NPC_PROFILES = [janice,robert,jim,mia,jani,sandi,cheg,johan,angelo,kyle,phelicia,criag,hilda,skye]
+var NPC_NAMES = ["janice","robert","jim","mia", "jani", "sandi","cheg", "johan", "angelo", "kyle", "phelicia", "craig", "hilda", "skye"] 
 
-var dialogueOption = {
-	"isHidden" : false,
-	"text" : "",
-	"requiredEvents" : []
-}
-
-var allNPCs = ["robert","janice","jim","mia", "jani", "sandi","cheg", "johan", "angelo", "kyle", "phelicia", "craig", "hilda", "skye"] 
-
+#template for junction/room
 var Junction = {
 	"name" : "reception",
 	"directions" : [1,3,4,6], #eight directions [0,1,2,3,4,5,6,7] can be [n,s,e,w,ne,nw,se,sw] or [sw,w,nw,n,ne,e,se,s] starting from direction [-1,-1](sw) going clockwise in a circle
 	"adjacentJunctions" : ["cafeteria","hallway","lab","patient1"] ,
-	"npcs" : ["robert","janice","jim","mia", "jani", "sandi","cheg", "johan", "angelo", "kyle", "phelicia", "craig", "hilda", "skye"] 
+	"npcs" : ["robert","janice"] 
 }
 
+#junction initializer
 func defineJunction(name, directions, adjecentJunctions, npcs):
 	var junct = Junction.duplicate(false)
 	junct["name"] = name
 	junct["directions"] = directions
 	junct[adjecentJunctions] = adjecentJunctions
 	junct["npcs"] = npcs
-
 	return junct
 
+#which junction we are curently in
 var activeJunction = Junction.duplicate()
 
 
@@ -45,19 +55,6 @@ var roomLibrary = {
 	"surgery": preload("res://Assets/finishedRooms/surgery.png"),
 	"breakroom": preload("res://Assets/rooms/Hallway.png") #
 }
-
-#var roomLibrary = {
-	#"admin": preload("res://Assets/rooms/Admin.png"),
-	#"cafeteria": preload("res://Assets/rooms/Cafeteria.png"),
-	#"hallway": preload("res://Assets/rooms/Hallway.png"),
-	#"lab": preload("res://Assets/rooms/Lab.png"),
-	#"morgue": preload("res://Assets/rooms/Morgue.png"),
-	#"patient1": preload("res://Assets/rooms/Patient Room1.png"),
-	#"patient2": preload("res://Assets/rooms/Patient Room2.png"),
-	#"reception": preload("res://Assets/rooms/Reception.png"),
-	#"reception2": preload("res://Assets/rooms/Reception2.png"),
-	#"surgery": preload("res://Assets/rooms/Surgery.png")
-#}
 
 var characterLibrary = {
 	"robert": preload("res://Assets/characters/robert4.png"),
@@ -76,6 +73,7 @@ var characterLibrary = {
 	"skye": preload("res://Assets/characters/skye.png")
 }
 
+#collection of all junctions
 var Junctions
 
 func _enter_tree() -> void:
@@ -106,70 +104,9 @@ func _enter_tree() -> void:
 		"lab" : lab,
 	}
 	
+	#we start off in reception room
 	activeJunction = Junctions["reception"]
 	pass
-	#NPCS["robert"]["Name"]
-	#NPCS["mia"]
-	#NPCS["janice"]
-	#NPCS["jim"]
-	#NPCS["janitor"]
-		
-		
-	
-	
-func onJunctionLoad(activeJunction):
-	#$gameUI.build_junction(Junction.adjacentJunctions[1])
-	#save routine 
-	
-	#load routine
-	var JunctionName = activeJunction.Name
-	#look through save rewrite Junctions parameters with 
-	#populate room scene data with active junction data
 
-func movementButtonEngaged(direction):
-	#move scene logic
-	activeJunction.Name = activeJunction["adjacentJunctions"][activeJunction["directions"][direction]]
-	#activeJunction = adjacentJunction[activeJunction["directions"][direction]]
-	pass
-
-
-#NPCs from benjamin
-#[node name="NPC2" parent="." unique_id=1271583253 instance=ExtResource("2_u74th")]
-#Prefered_diologe_type = "Confrontational"
-#Disposition = 40
-#Name = "robert"
-#Name_2 = "sanchezz"
-#DispositionRate = 10
-#Expertise = "Civilian"
-#Department = "Civilian"
-#Mood = "Angry"
-#
-#[node name="NPC3" parent="." unique_id=965265231 instance=ExtResource("2_u74th")]
-#Prefered_diologe_type = "Inquisitive"
-#Disposition = 42
-#Name = "jim"
-#Name_2 = "tim"
-#DispositionRate = 2
-#Expertise = "Accountant"
-#Department = "Managment"
-#Mood = "Apathetic"
-#
-#[node name="NPC4" parent="." unique_id=324083473 instance=ExtResource("2_u74th")]
-#Prefered_diologe_type = "Vague"
-#Name = "mia"
-#Name_2 = "that depressed  nurse"
-#DispositionRate = 15
-#Mood = "Sad"
-#
-#[node name="NPC1" parent="." unique_id=1931630368 instance=ExtResource("2_u74th")]
-#Prefered_diologe_type = "Direct"
-#Disposition = 50
-#Name = "Janice"
-#Name_2 = "Jan"
-#DispositionRate = 5
-#Expertise = "Nurse"
-#Department = "Nurses"
-#Mood = "Cheerful"
 	
-
 	

@@ -3,7 +3,7 @@ extends Node2D
 @onready var UI = $GameUi
 @onready var bg_a = $Parallax2D/background/bg_a
 @onready var bg_b = $Parallax2D/background/bg_b
-
+@onready var junctions = $junctions
 @export var fadeTime = 0.5
 
 var _using_a := true
@@ -49,6 +49,24 @@ func crossFade(texture: Texture2D):
 	from.visible = false
 	_using_a = !_using_a
 	_is_fading = false
+	
+func updateJunctions() -> void:
+	var activeJunction = RoomManager.activeJunction
+	var visibleDirections = [false,false,false,false,false,false,false,false]
+	var directionCount = junctions.get_child_count()
+	var activeDirectionCount = activeJunction["directions"].size()
+	for i in range(activeDirectionCount):
+		for j in range(directionCount):
+			if(activeJunction["directions"][i] == j): # for every active direction is it the same as our buttons direction? if yes then:
+				visibleDirections[j] = visibleDirections[j] || true # we are at an active direction, lets keep it to render later
+				junctions.get_child(j).get_node("Label").text = activeJunction["adjacentJunctions"][i] # lets set the direction with the coresponding location
+	#im doing a seperate for loop to disable/enable the innactive/active direction buttons
+	for k in range(directionCount):
+		if(visibleDirections[k]):
+			junctions.get_child(k).visible = true
+		else:
+			junctions.get_child(k).visible = false
+	pass
 
 
 func _on_north_texture_button_pressed() -> void:

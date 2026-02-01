@@ -46,23 +46,7 @@ func hideControl() -> void:
 	options.visible = false
 	dialogOptions.visible = false
 
-func updateJunctions() -> void:
-	var activeJunction = RoomManager.activeJunction
-	var visibleDirections = [false,false,false,false,false,false,false,false]
-	var directionCount = junctions.get_child_count()
-	var activeDirectionCount = activeJunction["directions"].size()
-	for i in range(activeDirectionCount):
-		for j in range(directionCount):
-			if(activeJunction["directions"][i] == j): # for every active direction is it the same as our buttons direction? if yes then:
-				visibleDirections[j] = visibleDirections[j] || true # we are at an active direction, lets keep it to render later
-				junctions.get_child(j).get_node("Label").text = activeJunction["adjacentJunctions"][i] # lets set the direction with the coresponding location
-	#im doing a seperate for loop to disable/enable the innactive/active direction buttons
-	for k in range(directionCount):
-		if(visibleDirections[k]):
-			junctions.get_child(k).visible = true
-		else:
-			junctions.get_child(k).visible = false
-	pass
+
 
 func disableNode(node: Button):
 	node.disabled = true
@@ -108,14 +92,13 @@ func _on_communicate_pressed() -> void:
 
 func _on_movement_pressed() -> void:
 	hideControl()
-<<<<<<< HEAD
-	junctions.visible = true
-	updateJunctions()
+	#junctions.visible = true
+	#updateJunctions()
 	pass # Replace with function body.
 
-=======
+
 	# TODO: reveal junctions via roomManager
->>>>>>> e1c1e3983fd2198dfdd709b4f3111bc053a5dab1
+
 
 func _on_observe_pressed() -> void:
 	hideControl()
