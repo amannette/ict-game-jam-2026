@@ -2,17 +2,9 @@ extends VBoxContainer
 
 
 
-func _on_button_pressed() -> void:
-	pass # Replace with function body.
+func _ready() -> void:
+	for button in self.get_children():
+		button.pressed.connect(_on_buttom_pressed.bind(button))
 
-
-func _on_button_2_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_button_3_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_button_4_pressed() -> void:
-	pass # Replace with function body.
+func _on_buttom_pressed(button):
+	print("button:", button)
