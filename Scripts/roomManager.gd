@@ -51,7 +51,7 @@ var roomLibrary = {
 	"patient1": preload("res://Assets/finishedRooms/patient1.png"),
 	"patient2": preload("res://Assets/finishedRooms/patient2.png"),
 	"reception": preload("res://Assets/finishedRooms/reception.png"),
-	"reception2": preload("res://Assets/finishedRooms/receptionBehind.png"),
+	"receptionDesk": preload("res://Assets/finishedRooms/receptionBehind.png"),
 	"surgery": preload("res://Assets/finishedRooms/surgery.png"),
 	"breakroom": preload("res://Assets/rooms/Hallway.png") #
 }
