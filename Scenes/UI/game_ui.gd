@@ -68,8 +68,6 @@ func hideControl() -> void:
 	dialogOptions.visible = false
 	junctions.visible = false
 
-
-
 func disableNode(node: Button):
 	node.disabled = true
 
@@ -322,3 +320,44 @@ func enterDialogueWith(npc):
 	
 	pass
 				
+
+
+func _on_southwest_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/southwest/Label.text
+	hideControl()
+	options.visible = true
+
+func _on_west_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/west/Label.text
+	hideControl()
+	options.visible = true
+
+func _on_northwest_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/northwest/Label.text
+	hideControl()
+	options.visible = true
+
+func _on_north_texture_button_pressed() -> void:
+	RoomManager.set_active_junction($junctions/north/Label.text)
+	hideControl()
+	options.visible = true
+
+func _on_northeast_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/northeast/Label.text
+	hideControl()
+	options.visible = true
+
+func _on_east_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/east/Label.text
+	hideControl()
+	options.visible = true
+
+func _on_southeast_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/southeast/Label.text
+	hideControl()
+	options.visible = true
+
+func _on_south_texture_button_pressed() -> void:
+	RoomManager.Junction["name"] = $junctions/south/Label.text
+	hideControl()
+	options.visible = true

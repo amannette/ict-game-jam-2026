@@ -40,7 +40,13 @@ func defineJunction(jname, directions, adjacentJunctions, npcs):
 
 #which junction we are curently in
 
+func set_active_junction(junction_name: String) -> void:
+	if !Junctions.has(junction_name):
+		push_warning("Unknown junction: " + junction_name)
+		return
 
+	activeJunction = Junctions[junction_name]
+	emit_signal("junction_changed", activeJunction)
 
 var roomLibrary = {
 	"admin": preload("res://Assets/finishedRooms/administration.png"),
@@ -51,7 +57,7 @@ var roomLibrary = {
 	"patient1": preload("res://Assets/finishedRooms/patient1.png"),
 	"patient2": preload("res://Assets/finishedRooms/patient2.png"),
 	"reception": preload("res://Assets/finishedRooms/reception.png"),
-	"reception2": preload("res://Assets/finishedRooms/receptionBehind.png"),
+	"receptionDesk": preload("res://Assets/finishedRooms/receptionBehind.png"),
 	"surgery": preload("res://Assets/finishedRooms/surgery.png"),
 	"breakroom": preload("res://Assets/rooms/Hallway.png") #
 }
