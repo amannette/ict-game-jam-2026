@@ -73,6 +73,24 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ww8i0"]
 
+[sub_resource type="Image" id="Image_34fwb"]
+data = {
+"data": PackedByteArray(255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255),
+"format": "RGBA8",
+"height": 2,
+"mipmaps": false,
+"width": 2
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_ww8i0"]
+image = SubResource("Image_34fwb")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nc7bc"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
 [resource]
 default_font = ExtResource("1_34fwb")
 default_font_size = 40
@@ -108,3 +126,26 @@ Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 1
 Label/styles/focus = SubResource("StyleBoxFlat_34fwb")
 Label/styles/normal = SubResource("StyleBoxEmpty_ww8i0")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 0)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
+RichTextLabel/colors/selection_color = Color(0.1, 0.1, 1, 0.8)
+RichTextLabel/colors/table_border = Color(0, 0, 0, 0)
+RichTextLabel/colors/table_even_row_bg = Color(0, 0, 0, 0)
+RichTextLabel/colors/table_odd_row_bg = Color(0, 0, 0, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 8
+RichTextLabel/constants/paragraph_separation = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/shadow_outline_size = 1
+RichTextLabel/constants/strikethrough_alpha = 50
+RichTextLabel/constants/table_h_separation = 3
+RichTextLabel/constants/table_v_separation = 3
+RichTextLabel/constants/text_highlight_h_padding = 3
+RichTextLabel/constants/text_highlight_v_padding = 3
+RichTextLabel/constants/underline_alpha = 50
+RichTextLabel/icons/horizontal_rule = SubResource("ImageTexture_ww8i0")
+RichTextLabel/styles/focus = SubResource("StyleBoxFlat_34fwb")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_nc7bc")
