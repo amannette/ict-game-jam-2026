@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dwoopjfgxk6vc" path="res://Scenes/UI/game_ui.gd" id="2_nr13x"]
 [ext_resource type="PackedScene" uid="uid://csw0p6dc1t33x" path="res://Scenes/junctions/junction.tscn" id="3_8fuut"]
 [ext_resource type="Texture2D" uid="uid://mp5pvshecj7t" path="res://Assets/UI/Dialogue_filler.png" id="3_g7o0n"]
+[ext_resource type="Script" uid="uid://2trij7w71e2o" path="res://Scenes/UI/dialog_options.gd" id="5_ibq3l"]
 
 [node name="GameUi" type="Control" unique_id=1653777319]
 layout_mode = 3
@@ -189,12 +190,40 @@ offset_bottom = 782.0
 [node name="TextureButton" parent="junctions/southwest" index="0" unique_id=627524166]
 rotation = -2.3561945
 
+[node name="dialogOptions" type="VBoxContainer" parent="." unique_id=102191647]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 600.0
+offset_right = 634.0
+offset_bottom = 649.0
+script = ExtResource("5_ibq3l")
+
+[node name="Button" type="Button" parent="dialogOptions" unique_id=1828682222]
+layout_mode = 2
+text = "Button1"
+
+[node name="Button2" type="Button" parent="dialogOptions" unique_id=560565454]
+layout_mode = 2
+text = "Button2"
+
+[node name="Button3" type="Button" parent="dialogOptions" unique_id=422037719]
+layout_mode = 2
+text = "Button3"
+
+[node name="Button4" type="Button" parent="dialogOptions" unique_id=342607671]
+layout_mode = 2
+text = "Button4"
+
 [connection signal="pressed" from="options/optionList/movement" to="." method="_on_movement_pressed"]
 [connection signal="pressed" from="options/optionList/observe" to="." method="_on_observe_pressed"]
 [connection signal="pressed" from="options/optionList/communicate" to="." method="_on_communicate_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="dialogOptions/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="dialogOptions/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="dialogOptions/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="dialogOptions/Button4" to="." method="_on_button_4_pressed"]
 
 [editable path="junctions/north"]
 [editable path="junctions/south"]

@@ -4,12 +4,23 @@ extends Control
 @onready var dialog = $dialog
 @onready var options = $options
 @onready var junctions = $junctions
+@onready var dialogOptions = $dialogOptions
+
+@onready var dialog1 = $dialogOptions/Button
+@onready var dialog2 = $dialogOptions/Button2
+@onready var dialog3 = $dialogOptions/Button3
+@onready var dialog4 = $dialogOptions/Button4
+
+# Hides the buttons we don't need in dialogOptions
+func hideCommunicate(node: Button) -> void:
+	node.visible = false
 
 func hideControl() -> void:
 	pause.visible = false
 	dialog.visible = false
 	options.visible = false
 	junctions.visible = false
+	dialogOptions.visible = false
 
 func disableNode(node: Button):
 	node.disabled = true
@@ -43,7 +54,7 @@ func _on_exit_pressed() -> void:
 # Options functionality
 func _on_communicate_pressed() -> void:
 	hideControl()
-	dialog.visible = true
+	dialogOptions.visible = true
 	pass # Replace with function body.
 
 func _on_movement_pressed() -> void:
@@ -56,3 +67,23 @@ func _on_observe_pressed() -> void:
 	hideControl()
 	dialog.visible = true
 	pass # Replace with function body.
+
+# dialog options functionality
+func _on_button_pressed() -> void:
+	hideControl()
+	dialog.visible = true
+
+
+func _on_button_2_pressed() -> void:
+	hideControl()
+	dialog.visible = true
+
+
+func _on_button_3_pressed() -> void:
+	hideControl()
+	dialog.visible = true
+
+
+func _on_button_4_pressed() -> void:
+	hideControl()
+	dialog.visible = true
