@@ -17,6 +17,7 @@ extends Control
 @onready var charDialogeSecond = $dialog/dialogOptions/Button2
 @onready var charDialogeThird = $dialog/dialogOptions/Button3
 @onready var charDialogeSecret = $dialog/dialogOptions/Button4
+@onready var reception: PackedScene = preload("res://Scenes/dialogue/reception.tscn")
 
 var avialableCharactersButtons = [dialog1,dialog2,dialog3,dialog4]
 var npcs = RoomManager.activeJunction["npcs"]
