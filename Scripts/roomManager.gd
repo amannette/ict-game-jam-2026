@@ -17,17 +17,30 @@ var dialgogueTree = {
 #[dialogtree1,dialogtree1,dialogtree1]
 
 
-var NPCs = []
+#var NPCs = []
 var NPC = {
-	"name" : "Defualt",
-	"name_2" : "Defualt",
+	"name" : "Mew",
+	"name_2" : "Muncher",
 	"dialoguePreference" : "Confrontational",
 	"dispositionRate" : 10,
-	"expertise" : "",
+	"expertise" : "mewing",
 	"department" : "patient",
 	"mood" : "apathetic" , 
 	"dialogueState" : 0 #this is where the player is on this NPCs dialogue tree
 }
+
+var NPCS = {
+	"robert" : NPC.duplicate(),
+	"mia" : NPC.duplicate(), 
+	"janice" : NPC.duplicate(), 
+	"janitor" : NPC.duplicate(),
+	"jim" : NPC.duplicate()
+}
+
+
+#func initNPCS(name1, name2, dialoguePref, dispoRate, expertise, department, mood, initState):
+
+
 
 
 
@@ -39,22 +52,44 @@ var Junction = {
 	"items" : []
 }
 
+func defineJunction(name, directions, adjecentJunctions, npcs, items):
+	var junct = Junction.duplicate(false)
+	junct["name"] = name
+	junct["directions"] = directions
+	junct[adjecentJunctions] = adjecentJunctions
+	junct["npcs"] = npcs
+	junct["items"] = items
+	return junct
 
 var activeJunction = Junction.duplicate()
+var activeConversationPartner = NPC.duplicate()
 
 
 var roomLibrary = {
-	"admin": preload("res://Assets/rooms/Admin.png"),
-	"cafeteria": preload("res://Assets/rooms/Cafeteria.png"),
-	"hallway": preload("res://Assets/rooms/Hallway.png"),
+	"admin": preload("res://Assets/finishedRooms/administration.png"),
+	"cafeteria": preload("res://Assets/finishedRooms/cafeteria.png"),
+	"hallway": preload("res://Assets/finishedRooms/hallway.png"),
 	"lab": preload("res://Assets/rooms/Lab.png"),
 	"morgue": preload("res://Assets/rooms/Morgue.png"),
 	"patient1": preload("res://Assets/rooms/Patient Room1.png"),
 	"patient2": preload("res://Assets/rooms/Patient Room2.png"),
-	"reception": preload("res://Assets/rooms/Reception.png"),
-	"reception2": preload("res://Assets/rooms/Reception2.png"),
-	"surgery": preload("res://Assets/rooms/Surgery.png")
+	"reception": preload("res://Assets/finishedRooms/reception.png"),
+	"reception2": preload("res://Assets/finishedRooms/receptionBehind.png"),
+	"surgery": preload("res://Assets/finishedRooms/surgery.png")
 }
+
+#var roomLibrary = {
+	#"admin": preload("res://Assets/rooms/Admin.png"),
+	#"cafeteria": preload("res://Assets/rooms/Cafeteria.png"),
+	#"hallway": preload("res://Assets/rooms/Hallway.png"),
+	#"lab": preload("res://Assets/rooms/Lab.png"),
+	#"morgue": preload("res://Assets/rooms/Morgue.png"),
+	#"patient1": preload("res://Assets/rooms/Patient Room1.png"),
+	#"patient2": preload("res://Assets/rooms/Patient Room2.png"),
+	#"reception": preload("res://Assets/rooms/Reception.png"),
+	#"reception2": preload("res://Assets/rooms/Reception2.png"),
+	#"surgery": preload("res://Assets/rooms/Surgery.png")
+#}
 
 var characterLibrary = {
 	"robert": preload("res://Assets/characters/ppeperson1.png"),
@@ -65,37 +100,12 @@ var characterLibrary = {
 }
 
 func _enter_tree() -> void:
-	var admin = Junction.duplicate()
-	admin["name"] = "administration"
-	admin["directions"] = [1,5,6,7,8]
-	
-	#initialize NPCS
-	
-	for i in range(2):
-		match i:
-			0:
-				NPCs.append(NPC.duplicate())
-				NPCs[i]["name"] = "robert"
-				NPCs[i]["name_2"] = "sanchez"
-				NPCs[i]["dialoguePreference"] = "Confrontational"
-				NPCs[i]["dispositionRate"] =  40
-				NPCs[i]["expertise"] = "Civilian"
-				NPCs[i]["department"] = "Civilian"
-				NPCs[i]["mood"] = "Angry"
-				NPCs[i]["dialogueState"] = 0
-			1:
-				NPCs.append(NPC.duplicate())
-				NPCs[i]["name"] = "robert"
-				NPCs[i]["name_2"] = "sanchez"
-				NPCs[i]["dialoguePreference"] = "Confrontational"
-				NPCs[i]["dispositionRate"] =  40
-				NPCs[i]["expertise"] = "Civilian"
-				NPCs[i]["department"] = "Civilian"
-				NPCs[i]["mood"] = "angry"
-				NPCs[i]["dialogueState"] = 0
-
-
-		
+	pass
+	#NPCS["robert"]["Name"]
+	#NPCS["mia"]
+	#NPCS["janice"]
+	#NPCS["jim"]
+	#NPCS["janitor"]
 		
 		
 	

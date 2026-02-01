@@ -2,6 +2,7 @@ extends Control
 
 @onready var pause = $pause
 @onready var dialog = $dialog
+@onready var CharacterName = $dialog/Label
 @onready var options = $options
 @onready var junctions = $junctions
 @onready var dialogOptions = $avialableCharacters
@@ -12,6 +13,8 @@ extends Control
 @onready var dialog4 = $avialableCharacters/Button4
 
 var avialableCharactersButtons = [dialog1,dialog2,dialog3,dialog4]
+var npcs = RoomManager.activeJunction["npcs"]
+
 
 # Hides the buttons we don't need in dialogOptions
 func hideCommunicate(node: Button) -> void:
@@ -76,30 +79,34 @@ func _on_observe_pressed() -> void:
 	pass # Replace with function body.
 
 # dialog options functionality
-func _on_button_pressed() -> void:
+func _on_button_pressed() -> void: #go to npc 1
 	hideControl()
+	enterDialogueWith(npcs[0])
 	dialog.visible = true
 
 
-func _on_button_2_pressed() -> void:
+func _on_button_2_pressed() -> void: #go to npc 2
 	hideControl()
+	enterDialogueWith(npcs[1])
 	dialog.visible = true
 
 
-func _on_button_3_pressed() -> void:
+func _on_button_3_pressed() -> void: #go to npc 3
 	hideControl()
+	enterDialogueWith(npcs[2])
 	dialog.visible = true
 
 
-func _on_button_4_pressed() -> void:
+func _on_button_4_pressed() -> void: #go to npc 4
 	hideControl()
+	enterDialogueWith(npcs[3])
 	dialog.visible = true
 	
 	
 func avialableCharactersinRoom():
 	var room = RoomManager.activeJunction 
 	if(room):
-		var npcs = room["npcs"]
+		#var npcs = room["npcs"]
 		for i in range(4):
 			if(i < npcs.size()):
 				match i:
@@ -124,4 +131,6 @@ func avialableCharactersinRoom():
 						
 				
 				
-		
+func enterDialogueWith(npc):
+	CharacterName.text = npc
+	pass
