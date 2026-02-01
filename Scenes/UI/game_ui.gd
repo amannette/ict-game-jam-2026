@@ -312,7 +312,7 @@ func _on_northwest_texture_button_pressed() -> void:
 	options.visible = true
 
 func _on_north_texture_button_pressed() -> void:
-	RoomManager.Junction["name"] = $junctions/north/Label.text
+	RoomManager.set_active_junction($junctions/north/Label.text)
 	hideControl()
 	options.visible = true
 
