@@ -3,7 +3,6 @@ extends Control
 @onready var pause = $pause
 @onready var dialog = $dialog
 @onready var options = $options
-@onready var junctions = $junctions
 @onready var dialogOptions = $avialableCharacters
 
 @onready var dialog1 = $avialableCharacters/Button
@@ -21,7 +20,6 @@ func hideControl() -> void:
 	pause.visible = false
 	dialog.visible = false
 	options.visible = false
-	junctions.visible = false
 	dialogOptions.visible = false
 
 func updateJunctions() -> void:
@@ -66,7 +64,8 @@ func _on_communicate_pressed() -> void:
 
 func _on_movement_pressed() -> void:
 	hideControl()
-	junctions.visible = true
+	# TODO: reveal junctions via roomManager
+
 	pass # Replace with function body.
 
 
