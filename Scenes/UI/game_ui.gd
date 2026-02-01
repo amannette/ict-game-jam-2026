@@ -63,6 +63,7 @@ func _ready() -> void:
 	
 	# Start with all UI not visible
 	hideControl()
+	options.visible = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and !pause.visible == true:
