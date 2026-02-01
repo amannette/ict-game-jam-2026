@@ -97,6 +97,7 @@ text = "Movement"
 
 [node name="observe" type="Button" parent="options/optionList" unique_id=2143006218]
 layout_mode = 2
+disabled = true
 text = "Observe"
 
 [node name="communicate" type="Button" parent="options/optionList" unique_id=1766065032]
