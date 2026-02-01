@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b3edlo7i72cqp" path="res://Materials/UI.tres" id="1_g7o0n"]
 [ext_resource type="Script" uid="uid://dwoopjfgxk6vc" path="res://Scenes/UI/game_ui.gd" id="2_nr13x"]
 [ext_resource type="PackedScene" uid="uid://csw0p6dc1t33x" path="res://Scenes/junctions/junction.tscn" id="3_8fuut"]
-[ext_resource type="Texture2D" uid="uid://b8v8i0lcc3e35" path="res://Assets/UI/Dialogue_filler.png" id="3_g7o0n"]
+[ext_resource type="Texture2D" uid="uid://mp5pvshecj7t" path="res://Assets/UI/Dialogue_filler.png" id="3_g7o0n"]
 
 [node name="GameUi" type="Control" unique_id=1653777319]
 layout_mode = 3
@@ -279,6 +279,14 @@ text = "cafeteria"
 [connection signal="pressed" from="avialableCharacters/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="avialableCharacters/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="avialableCharacters/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="junctions/southwest/TextureButton" to="." method="_on_southwest_texture_button_pressed"]
+[connection signal="pressed" from="junctions/west/TextureButton" to="." method="_on_west_texture_button_pressed"]
+[connection signal="pressed" from="junctions/northwest/TextureButton" to="." method="_on_northwest_texture_button_pressed"]
+[connection signal="pressed" from="junctions/north/TextureButton" to="." method="_on_north_texture_button_pressed"]
+[connection signal="pressed" from="junctions/northeast/TextureButton" to="." method="_on_northeast_texture_button_pressed"]
+[connection signal="pressed" from="junctions/east/TextureButton" to="." method="_on_east_texture_button_pressed"]
+[connection signal="pressed" from="junctions/southeast/TextureButton" to="." method="_on_southeast_texture_button_pressed"]
+[connection signal="pressed" from="junctions/south/TextureButton" to="." method="_on_south_texture_button_pressed"]
 
 [editable path="junctions/southwest"]
 [editable path="junctions/west"]

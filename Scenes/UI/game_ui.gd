@@ -296,3 +296,37 @@ func enterDialogueWith(npc):
 	
 	pass
 				
+
+
+func _on_southwest_texture_button_pressed() -> void:
+	# move to new scene
+	pass
+
+
+func _on_west_texture_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_northwest_texture_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_north_texture_button_pressed() -> void:
+	# this will test
+	pass # Replace with function body.
+
+
+func _on_northeast_texture_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_east_texture_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_southeast_texture_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_south_texture_button_pressed() -> void:
+	pass # Replace with function body.
