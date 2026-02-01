@@ -8,6 +8,7 @@ extends Node2D
 
 var _using_a := true
 var _is_fading := false
+var movementVisible = false
 
 signal movementButtonSignal
 
@@ -16,10 +17,17 @@ var activeJunction = RoomManager.Junction
 func _ready() -> void:
 	crossFade(RoomManager.roomLibrary["reception"])
 	# start the options menu in UI
+	
+
+func _process(delta: float) -> void:
+	if movementVisible:
+		$junctions.visible = true
+	else:
+		$junctions.visible = false
 	if $Parallax2D.characterCount == 0:
 		UI.disableNode($GameUi/options/optionList/communicate)
-	UI.revealNode(UI.options)
-
+	elif $Parallax2D.characterCount > 0 and UI.options.visible == true:
+			UI.revealNode(UI.options)
 
 func crossFade(texture: Texture2D):
 	if _is_fading:
@@ -41,3 +49,36 @@ func crossFade(texture: Texture2D):
 	from.visible = false
 	_using_a = !_using_a
 	_is_fading = false
+
+
+func _on_north_texture_button_pressed() -> void:
+	# TODO: communicate to game state that the room changed
+	crossFade(RoomManager.roomLibrary[$junctions/north/Label.text])
+
+
+func _on_south_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/south/Label.text])
+
+
+func _on_east_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/east/Label.text])
+
+
+func _on_west_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/west/Label.text])
+
+
+func _on_northeast_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/northeast/Label.text])
+
+
+func _on_northwest_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/northwest/Label.text])
+
+
+func _on_southeast_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/southeast/Label.text])
+
+
+func _on_southwest_texture_button_pressed() -> void:
+	crossFade(RoomManager.roomLibrary[$junctions/southwest/Label.text])

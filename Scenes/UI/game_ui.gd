@@ -6,7 +6,6 @@ extends Control
 @onready var firstText = $dialog/RichTextLabel
 @onready var secondText = $dialog/RichTextLabel2
 @onready var options = $options
-@onready var junctions = $junctions
 @onready var dialogOptions = $avialableCharacters
 
 @onready var dialog1 = $avialableCharacters/Button
@@ -45,7 +44,6 @@ func hideControl() -> void:
 	pause.visible = false
 	dialog.visible = false
 	options.visible = false
-	junctions.visible = false
 	dialogOptions.visible = false
 
 func updateJunctions() -> void:
@@ -110,10 +108,14 @@ func _on_communicate_pressed() -> void:
 
 func _on_movement_pressed() -> void:
 	hideControl()
+<<<<<<< HEAD
 	junctions.visible = true
 	updateJunctions()
 	pass # Replace with function body.
 
+=======
+	# TODO: reveal junctions via roomManager
+>>>>>>> e1c1e3983fd2198dfdd709b4f3111bc053a5dab1
 
 func _on_observe_pressed() -> void:
 	hideControl()
