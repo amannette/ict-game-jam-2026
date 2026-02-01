@@ -8,6 +8,7 @@ extends Node2D
 
 var _using_a := true
 var _is_fading := false
+var movementVisible = false
 
 signal movementButtonSignal
 
@@ -16,10 +17,17 @@ var activeJunction = RoomManager.Junction
 func _ready() -> void:
 	crossFade(RoomManager.roomLibrary["reception"])
 	# start the options menu in UI
+	
+
+func _process(delta: float) -> void:
+	if movementVisible:
+		$junctions.visible = true
+	else:
+		$junctions.visible = false
 	if $Parallax2D.characterCount == 0:
 		UI.disableNode($GameUi/options/optionList/communicate)
-	UI.revealNode(UI.options)
-
+	elif $Parallax2D.characterCount > 0 and UI.options.visible == true:
+			UI.revealNode(UI.options)
 
 func crossFade(texture: Texture2D):
 	if _is_fading:
@@ -44,6 +52,7 @@ func crossFade(texture: Texture2D):
 
 
 func _on_north_texture_button_pressed() -> void:
+	# TODO: communicate to game state that the room changed
 	crossFade(RoomManager.roomLibrary[$junctions/north/Label.text])
 
 

@@ -66,9 +66,6 @@ func _on_movement_pressed() -> void:
 	hideControl()
 	# TODO: reveal junctions via roomManager
 
-	pass # Replace with function body.
-
-
 func _on_observe_pressed() -> void:
 	hideControl()
 	dialog.visible = true
