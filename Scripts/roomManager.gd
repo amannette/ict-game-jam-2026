@@ -30,16 +30,16 @@ var Junction = {
 }
 
 #junction initializer
-func defineJunction(name, directions, adjecentJunctions, npcs):
+func defineJunction(jname, directions, adjacentJunctions, npcs):
 	var junct = Junction.duplicate(false)
-	junct["name"] = name
+	junct["name"] = jname
 	junct["directions"] = directions
-	junct[adjecentJunctions] = adjecentJunctions
+	junct["adjacentJunctions"] = adjacentJunctions
 	junct["npcs"] = npcs
 	return junct
 
 #which junction we are curently in
-var activeJunction = Junction.duplicate()
+
 
 
 var roomLibrary = {
@@ -74,38 +74,40 @@ var characterLibrary = {
 }
 
 #collection of all junctions
-var Junctions
+
+
+var reception = defineJunction("reception",[0,1,3],["patient1","hallway","receptionDesk"],["janice","jim"])
+var receptionDesk = defineJunction("receptionDesk",[1,3,4],["reception","patient1","hallway"],["skye"])
+var patient1 = defineJunction("patient1",[3,4],["receptionDesk","patient2"],["mia","robert"])
+var patient2 = defineJunction("patient2",[6],["patient1"],["kyle"])
+var hallway = defineJunction("hallway",[0,2,3,4,6,7],["surgery","admin","cafeteria","breakroom","reception","bathroom"],["cheg"])
+var bathroom = defineJunction("bathroom",[1],["hallway"],["jim"])
+var surgery = defineJunction("surgery",[7],["hallway"],["johan","criag"])
+var breakroom = defineJunction("breakroom",[5],["hallway"],["jani"])
+var cafeteria = defineJunction("cafeteria",[3],["hallway"],["jani"])
+var admin = defineJunction("admin",[3,7],["morgue","hallway"],["hilda","sandi"])
+var morgue = defineJunction("morgue",[0,1,7],["admin","lab","admin"],["angelo"])
+var lab = defineJunction("lab",[7],["morgue"],["phelicia"])
+var Junctions = {
+	"reception" : reception,
+	"receptionDesk" : receptionDesk,
+	"patient1" : patient1,
+	"patient2" : patient2,
+	"hallway" : hallway,
+	"bathroom" : bathroom ,
+	"surgery" : surgery,
+	"breakroom" : breakroom,
+	"cafeteria" : cafeteria,
+	"admin" : admin,
+	"morgue" : morgue,
+	"lab" : lab,
+}
+	
+#we start off in reception room
+var activeJunction = Junctions["reception"]
 
 func _enter_tree() -> void:
-	var reception = defineJunction("reception",[0,1,3],["patient1","hallway","receptionDesk"],["janice","jim"])
-	var receptionDesk = defineJunction("receptionDesk",[1,3,4],["reception","patient1","hallway"],["skye"])
-	var patient1 = defineJunction("patient1",[3,4],["receptionDesk","patient2"],["mia","robert"])
-	var patient2 = defineJunction("patient2",[6],["patient1"],["kyle"])
-	var hallway = defineJunction("hallway",[0,2,3,4,6,7],["surgery","admin","cafeteria","breakroom","reception","bathroom"],["cheg"])
-	var bathroom = defineJunction("bathroom",[1],["hallway"],["jim"])
-	var surgery = defineJunction("surgery",[7],["hallway"],["johan","criag"])
-	var breakroom = defineJunction("breakroom",[5],["hallway"],["jani"])
-	var cafeteria = defineJunction("cafeteria",[3],["hallway"],["jani"])
-	var admin = defineJunction("admin",[3,7],["morgue","hallway"],["hilda","sandi"])
-	var morgue = defineJunction("morgue",[0,1,7],["admin","lab","admin"],["angelo"])
-	var lab = defineJunction("lab",[7],["morgue"],["phelicia"])
-	Junctions = {
-		"reception" : reception,
-		"receptionDesk" : receptionDesk,
-		"patient1" : patient1,
-		"patient2" : patient2,
-		"hallway" : hallway,
-		"bathroom" : bathroom ,
-		"surgery" : surgery,
-		"breakroom" : breakroom,
-		"cafeteria" : cafeteria,
-		"admin" : admin,
-		"morgue" : morgue,
-		"lab" : lab,
-	}
-	
-	#we start off in reception room
-	activeJunction = Junctions["reception"]
+
 	pass
 
 	

@@ -7,6 +7,7 @@ extends Control
 @onready var secondText = $dialog/RichTextLabel2
 @onready var options = $options
 @onready var dialogOptions = $avialableCharacters
+@onready var junctions = $junctions
 
 @onready var dialog1 = $avialableCharacters/Button
 @onready var dialog2 = $avialableCharacters/Button2
@@ -46,6 +47,7 @@ func hideControl() -> void:
 	dialog.visible = false
 	options.visible = false
 	dialogOptions.visible = false
+	junctions.visible = false
 
 
 
@@ -92,10 +94,30 @@ func _on_communicate_pressed() -> void:
 	avialableCharactersinRoom()
 	pass # Replace with function body.
 
+
+
+func updateJunctions() -> void:
+	var activeJunction = RoomManager.activeJunction
+	var visibleDirections = [false,false,false,false,false,false,false,false]
+	var directionCount = junctions.get_child_count()
+	var activeDirectionCount = activeJunction["directions"].size()
+	for i in range(activeDirectionCount):
+		for j in range(directionCount):
+			if(activeJunction["directions"][i] == j): # for every active direction is it the same as our buttons direction? if yes then:
+				visibleDirections[j] = visibleDirections[j] || true # we are at an active direction, lets keep it to render later
+				junctions.get_child(j).get_node("Label").text = activeJunction["adjacentJunctions"][i] # lets set the direction with the coresponding location
+	#im doing a seperate for loop to disable/enable the innactive/active direction buttons
+	for k in range(directionCount):
+		if(visibleDirections[k]):
+			junctions.get_child(k).visible = true
+		else:
+			junctions.get_child(k).visible = false
+	pass
+
 func _on_movement_pressed() -> void:
 	hideControl()
-	#junctions.visible = true
-	#updateJunctions()
+	junctions.visible = true
+	updateJunctions()
 	pass # Replace with function body.
 
 
