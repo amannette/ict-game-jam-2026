@@ -3,8 +3,9 @@
 [ext_resource type="Theme" uid="uid://b3edlo7i72cqp" path="res://Materials/UI.tres" id="1_rcnvp"]
 [ext_resource type="Script" uid="uid://dwoopjfgxk6vc" path="res://Scenes/UI/game_ui.gd" id="2_nr13x"]
 [ext_resource type="PackedScene" uid="uid://csw0p6dc1t33x" path="res://Scenes/junctions/junction.tscn" id="3_8fuut"]
-[ext_resource type="Texture2D" uid="uid://mp5pvshecj7t" path="res://Assets/UI/Dialogue_filler.png" id="3_g7o0n"]
+[ext_resource type="Texture2D" uid="uid://b8v8i0lcc3e35" path="res://Assets/UI/Dialogue_filler.png" id="3_g7o0n"]
 [ext_resource type="Script" uid="uid://2trij7w71e2o" path="res://Scenes/UI/dialog_options.gd" id="5_ibq3l"]
+[ext_resource type="Script" uid="uid://cehtriv3mctr3" path="res://Scenes/UI/avialable_characters.gd" id="6_foqg8"]
 
 [node name="GameUi" type="Control" unique_id=1653777319]
 layout_mode = 3
@@ -17,7 +18,6 @@ theme = ExtResource("1_rcnvp")
 script = ExtResource("2_nr13x")
 
 [node name="dialog" type="Control" parent="." unique_id=315729378]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -25,10 +25,10 @@ offset_bottom = 40.0
 [node name="Label" type="Label" parent="dialog" unique_id=1443556567]
 top_level = true
 layout_mode = 0
-offset_left = 139.955
-offset_top = 523.875
-offset_right = 411.95502
-offset_bottom = 578.875
+offset_left = 157.0
+offset_top = 498.0
+offset_right = 429.0
+offset_bottom = 553.0
 text = "SpeakerName"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="dialog" unique_id=745352608]
@@ -37,14 +37,48 @@ layout_mode = 0
 offset_left = 149.0
 offset_top = 616.0
 offset_right = 1557.0
-offset_bottom = 885.0
-text = "This is a test dialog. we should probably at least limit text to 2, maybe 3 sentences before it goes out of scope of this border."
+offset_bottom = 751.0
+text = "I cant say, but ever since coming here for a hangnail I've been feeling woozy."
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="dialog" unique_id=503889089]
+top_level = true
+layout_mode = 0
+offset_left = 151.0
+offset_top = 727.0
+offset_right = 1565.0
+offset_bottom = 814.0
+text = "Do you think they did something to me?"
 scroll_active = false
 
 [node name="Sprite2D" type="Sprite2D" parent="dialog" unique_id=852013225]
-position = Vector2(857, 650)
-scale = Vector2(1.3777778, 0.4180328)
+position = Vector2(846.00006, 829)
+scale = Vector2(1.3777778, 0.745082)
 texture = ExtResource("3_g7o0n")
+
+[node name="dialogOptions" type="VBoxContainer" parent="dialog" unique_id=1469674221]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 826.0
+offset_right = 1476.0
+offset_bottom = 1034.0
+script = ExtResource("5_ibq3l")
+
+[node name="Button" type="Button" parent="dialog/dialogOptions" unique_id=955385918]
+layout_mode = 2
+text = "No."
+
+[node name="Button2" type="Button" parent="dialog/dialogOptions" unique_id=1982832622]
+layout_mode = 2
+text = "Yes"
+
+[node name="Button3" type="Button" parent="dialog/dialogOptions" unique_id=130496399]
+layout_mode = 2
+text = "Maybe"
+
+[node name="Button4" type="Button" parent="dialog/dialogOptions" unique_id=340462403]
+layout_mode = 2
+text = "..."
 
 [node name="options" type="Control" parent="." unique_id=1070552990]
 visible = false
@@ -190,27 +224,28 @@ offset_bottom = 782.0
 [node name="TextureButton" parent="junctions/southwest" index="0" unique_id=627524166]
 rotation = -2.3561945
 
-[node name="dialogOptions" type="VBoxContainer" parent="." unique_id=102191647]
+[node name="avialableCharacters" type="VBoxContainer" parent="." unique_id=102191647]
+visible = false
 layout_mode = 0
 offset_left = 300.0
 offset_top = 600.0
 offset_right = 634.0
 offset_bottom = 649.0
-script = ExtResource("5_ibq3l")
+script = ExtResource("6_foqg8")
 
-[node name="Button" type="Button" parent="dialogOptions" unique_id=1828682222]
+[node name="Button" type="Button" parent="avialableCharacters" unique_id=1828682222]
 layout_mode = 2
 text = "Button1"
 
-[node name="Button2" type="Button" parent="dialogOptions" unique_id=560565454]
+[node name="Button2" type="Button" parent="avialableCharacters" unique_id=560565454]
 layout_mode = 2
 text = "Button2"
 
-[node name="Button3" type="Button" parent="dialogOptions" unique_id=422037719]
+[node name="Button3" type="Button" parent="avialableCharacters" unique_id=422037719]
 layout_mode = 2
 text = "Button3"
 
-[node name="Button4" type="Button" parent="dialogOptions" unique_id=342607671]
+[node name="Button4" type="Button" parent="avialableCharacters" unique_id=342607671]
 layout_mode = 2
 text = "Button4"
 
@@ -220,10 +255,10 @@ text = "Button4"
 [connection signal="pressed" from="pause/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="pause/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="dialogOptions/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="dialogOptions/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="dialogOptions/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="dialogOptions/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="avialableCharacters/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="avialableCharacters/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="avialableCharacters/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="avialableCharacters/Button4" to="." method="_on_button_4_pressed"]
 
 [editable path="junctions/north"]
 [editable path="junctions/south"]
