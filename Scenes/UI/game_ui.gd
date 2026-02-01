@@ -29,14 +29,33 @@ var janice = Reception.get_node("NPC1")
 var robert = Reception.get_node("NPC2")
 var jim = Reception.get_node("NPC3")
 var mia = Reception.get_node("NPC4")
+var profiles = Reception.get_children() #
+var profileNames = RoomManager.NPC_NAMES
 
-var npcProfiles = [ janice, jim, ]
+#var npcProfiles = [ janice, jim ]
+var npcProfiles = []
 var activeNPC = ""
 var activeNPCIdx = 0
 var npcOutcomes = [0,0,0,0]
 var outComeTypes
 var pathID = 0
 var dispRate = 0
+
+
+
+#func setActiveNPCs():
+	#var activeNPCIdx = []
+	#for ch in profileNames:
+		#for k in npcs.size():
+			#if(ch == npcs[k]):
+				#npcProfiles.append(profiles[k])
+				##activeNPCIdx.append(profiles[k])
+				#activeNPCIdx = (profiles[k])
+				#print(ch, profiles[k])
+				
+
+				
+
 
 # Hides the buttons we don't need in dialogOptions
 func hideCommunicate(node: Button) -> void:
@@ -62,6 +81,8 @@ func _ready() -> void:
 	charDialogeSecond.pressed.connect(_on_D_Option2_Pressed)
 	charDialogeThird.pressed.connect(_on_D_Option3_Pressed)
 	charDialogeSecret.pressed.connect(_on_D_OptionSecret_Pressed)
+	#setActiveNPCs()
+	
 	
 	# Start with all UI not visible
 	hideControl()
@@ -91,6 +112,11 @@ func _on_communicate_pressed() -> void:
 	hideControl()
 	
 	dialogOptions.visible = true
+	for i in range(profileNames.size()):
+		for j in range(npcs.size()):
+			if(profileNames[i] == npcs[j]):
+				npcProfiles.append(profiles[i])
+	print(npcProfiles)
 	avialableCharactersinRoom()
 	pass # Replace with function body.
 
@@ -240,7 +266,7 @@ func enterDialogueWith(npc):
 	activeNPC = npc
 	for i in range(npcs.size()):
 		if(npc == npcProfiles[i].Name):
-			activeNPCIdx = i	
+			activeNPCIdx = i
 			CharacterName.text = npc
 			if(!playerState["npcs"][npc]["hasEncountered"]):
 				var D1 = npcProfiles[i].get_child(0)
