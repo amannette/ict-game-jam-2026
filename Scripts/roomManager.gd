@@ -24,6 +24,7 @@ func set_active_junction(junction_name: String) -> void:
 		push_warning("Unknown junction: " + junction_name)
 		return
 	activeJunction = Junctions[junction_name]
+	emit_signal("junction_changed", activeJunction)
 
 var roomLibrary = {
 	"admin": preload("res://Assets/finishedRooms/administration.png"),
@@ -36,7 +37,7 @@ var roomLibrary = {
 	"reception": preload("res://Assets/finishedRooms/reception.png"),
 	"receptionDesk": preload("res://Assets/finishedRooms/receptionBehind.png"),
 	"surgery": preload("res://Assets/finishedRooms/surgery.png"),
-	"breakroom": preload("res://Assets/rooms/Hallway.png"), 
+	"breakroom": preload("res://Assets/finishedRooms/breakroom.png"), 
 	"menu" : preload("res://Assets/finishedRooms/menu.png")
 }
 
