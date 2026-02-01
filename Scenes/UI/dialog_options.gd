@@ -8,4 +8,5 @@ func _ready() -> void:
 		button.pressed.connect(_on_buttom_pressed.bind(button))
 
 func _on_buttom_pressed(button):
-	print("button:", button)
+	pass
+	#print("button:", button)

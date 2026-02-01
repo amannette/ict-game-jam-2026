@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d33b4uv065d46"]
+
+[ext_resource type="Script" uid="uid://cnfrn1h0rbk1r" path="res://Scripts/NPCdef.gd" id="1_nn7x3"]
+
+[node name="ReceptionDesk" type="Node" unique_id=1393200850]
+
+[node name="NPC5" type="Node" parent="." unique_id=2084912436]
+script = ExtResource("1_nn7x3")
+metadata/_custom_type_script = "uid://cnfrn1h0rbk1r"

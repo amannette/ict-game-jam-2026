@@ -11,11 +11,11 @@ const control: PackedScene = preload("res://Scenes/dialogue/NPCscene.tscn")
 @export var Expertise: String
 @export var Department: String
 @export var Mood: String
-# mood = Cheerful, Sad, Angry, Apathetic
+# mood = Cheerful, Sad, Angry, Apathetic, Chill
 # Disposition = Disposition towards the Character between 0-100.00
 # DispositionRate = Rate of Disposition change if wrong diologue is chosen
 # Expertise = Doctor, Nurse, Detective, Civilian, Janator, Security, Accountant| Expertise might lead to specific diologue or use in game.
-# Department = Buisness, HR, Managment, OR, ER, Nurses, Civilian, Security
+# Department = Buisness, HR, Managment, OR, ER, Nurses, Civilian, Security, Mortuary, Lab
 # Name_2 = other name or nickname used to add depth to the game in diologue
 # Prefered_diologe_type = Direct, Confrontational, Inquisitive, Vague
 
