@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b0ndhnf7cvoad"]
 
+[ext_resource type="Theme" uid="uid://b3edlo7i72cqp" path="res://Materials/UI.tres" id="1_5e45q"]
 [ext_resource type="Script" uid="uid://dpg686c0jd7bu" path="res://Scenes/credits/credits.gd" id="2_mrcp2"]
 
 [node name="Credits" type="Control" unique_id=1755709173]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_5e45q")
 script = ExtResource("2_mrcp2")
 
 [node name="Control" type="Control" parent="." unique_id=1685356739]
@@ -32,19 +34,23 @@ layout_mode = 2
 
 [node name="Label3" type="Label" parent="Control/VBoxContainer" unique_id=1707200026]
 layout_mode = 2
-text = "USER - ROLE"
+text = "Hannah Portenier - Character Artist, Scriptwriter"
 
 [node name="Label4" type="Label" parent="Control/VBoxContainer" unique_id=1241851451]
 layout_mode = 2
-text = "Bejamin Manette - Artwork, Dialog Scripting"
+text = "Benjamin Manette - Environment Artist, Dialogue Architecture, Programmer"
 
 [node name="Label5" type="Label" parent="Control/VBoxContainer" unique_id=2078545906]
 layout_mode = 2
-text = "Christopher Pina - UI/UX"
+text = "Christopher Pina - UI/UX, Programmer"
 
 [node name="Label6" type="Label" parent="Control/VBoxContainer" unique_id=1827932231]
 layout_mode = 2
-text = "USER - ROLE"
+text = "Aidan - Dialogue Architecture, Programmer, Game State Architecture"
+
+[node name="Label7" type="Label" parent="Control/VBoxContainer" unique_id=454144484]
+layout_mode = 2
+text = "Grace - Scriptwriter, Artist"
 
 [node name="return" type="Button" parent="." unique_id=1678999655]
 layout_mode = 0
