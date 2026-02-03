@@ -1,6 +1,7 @@
 extends Parallax2D
 
 @onready var background = $background
+@onready var UI = self.get_parent().get_child(0)
 
 @export var sensitivity = 8
 @export var dampening = 5.0
@@ -12,9 +13,11 @@ var characters = []
 var charStartPos = []
 var bgStartPos: Vector2
 
-
+signal junction_changed(active_junction)
 
 func _ready() -> void:
+	UI.junction_changed.connect(_on_junction_changed)
+
 	bgStartPos = background.position
 	addCharacters()
 
@@ -23,8 +26,10 @@ func addCharacters() -> void:
 	# clear characters before adding new ones
 	for child in get_children():
 		if child != background:
-			child.queue_free()
-	for i in range(characterCount):
+			child.call_deferred("queue_free")
+			#child.queue_free()
+	characters = []
+	for i in range(RoomManager.activeJunction["npcs"].size()):
 		if characterScene:
 			var charInstance = characterScene.instantiate()
 			add_child(charInstance)
@@ -52,3 +57,9 @@ func _process(delta: float) -> void:
 		var factor = randf_range(0.4, 0.7)
 		var charTarget = charStartPos[i] + normalized * sensitivity * factor
 		characters[i].position = characters[i].position.lerp(charTarget, dampening * delta)
+
+
+func _on_junction_changed(active_junction):
+	#print(active_junction)
+	addCharacters()
+	pass

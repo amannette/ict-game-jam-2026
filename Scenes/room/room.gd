@@ -11,10 +11,12 @@ var movementVisible = false
 var currentBG = "reception"
 
 signal movementButtonSignal
-
-var activeJunction = RoomManager.Junction
+var activeJunction = RoomManager.activeJunction
+signal junction_changed(active_junction)
 
 func _ready() -> void:
+	#junction_changed.connect(_on_junction_changed.bind(activeJunction))
+	#UI.junction_changed.connect(_on_junction_changed)
 	crossFade(RoomManager.roomLibrary[currentBG])
 
 func _process(delta: float) -> void:
@@ -22,8 +24,8 @@ func _process(delta: float) -> void:
 		UI.disableNode($GameUi/options/optionList/communicate)
 	elif $Parallax2D.characterCount > 0 and UI.options.visible == true:
 			UI.revealNode(UI.options)
-	if currentBG != RoomManager.Junction["name"]:
-		currentBG = str(RoomManager.Junction["name"])
+	if currentBG != RoomManager.activeJunction["name"]:
+		currentBG = str(RoomManager.activeJunction["name"])
 		crossFade(RoomManager.roomLibrary[currentBG])
 
 func crossFade(texture: Texture2D):
@@ -47,6 +49,10 @@ func crossFade(texture: Texture2D):
 	_using_a = !_using_a
 	_is_fading = false
 	
+	
+#func _on_junction_changed(active_junction):
+	#print(active_junction)
+	#pass
 
 
 

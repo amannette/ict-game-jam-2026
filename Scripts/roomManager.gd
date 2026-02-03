@@ -19,12 +19,15 @@ func defineJunction(jname, directions, adjacentJunctions, npcs):
 	junct["npcs"] = npcs
 	return junct
 
+
+signal junction_changed(activeJunction)
 func set_active_junction(junction_name: String) -> void:
 	if !Junctions.has(junction_name):
 		push_warning("Unknown junction: " + junction_name)
 		return
 	activeJunction = Junctions[junction_name]
-	emit_signal("junction_changed", activeJunction)
+	junction_changed.emit(activeJunction)
+	#emit_signal("junction_changed", activeJunction)
 
 var roomLibrary = {
 	"admin": preload("res://Assets/finishedRooms/administration.png"),
@@ -38,7 +41,8 @@ var roomLibrary = {
 	"receptionDesk": preload("res://Assets/finishedRooms/receptionBehind.png"),
 	"surgery": preload("res://Assets/finishedRooms/surgery.png"),
 	"breakroom": preload("res://Assets/finishedRooms/breakroom.png"), 
-	"menu" : preload("res://Assets/finishedRooms/menu.png")
+	"menu" : preload("res://Assets/finishedRooms/menu.png"),
+	"bathroom" : preload("res://Assets/finishedRooms/barfroom1.png")
 }
 
 var characterLibrary = {
@@ -53,7 +57,7 @@ var characterLibrary = {
 	"angelo": preload("res://Assets/characters/angelo.png"),
 	"kyle": preload("res://Assets/characters/pressureSurgeon.png"), 
 	"phelicia": preload("res://Assets/characters/mia.png"),
-	"craig": preload("res://Assets/characters/surgeon.png"),
+	"criag": preload("res://Assets/characters/surgeon.png"),
 	"hilda": preload("res://Assets/characters/jim1.png"), #
 	"skye": preload("res://Assets/characters/skye.png")
 }

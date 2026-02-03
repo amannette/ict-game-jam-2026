@@ -37,24 +37,14 @@ var npcProfiles = []
 var activeNPC = ""
 var activeNPCIdx = 0
 var npcOutcomes = [0,0,0,0]
-var outComeTypes
+var outComeTypes = [""]
 var pathID = 0
 var dispRate = 0
 
 
 
-#func setActiveNPCs():
-	#var activeNPCIdx = []
-	#for ch in profileNames:
-		#for k in npcs.size():
-			#if(ch == npcs[k]):
-				#npcProfiles.append(profiles[k])
-				##activeNPCIdx.append(profiles[k])
-				#activeNPCIdx = (profiles[k])
-				#print(ch, profiles[k])
-				
+signal junction_changed(active_junction)
 
-				
 
 
 # Hides the buttons we don't need in dialogOptions
@@ -109,12 +99,14 @@ func _on_exit_pressed() -> void:
 func _on_communicate_pressed() -> void:
 	hideControl()
 	
+	npcs = RoomManager.activeJunction["npcs"]
 	dialogOptions.visible = true
 	for i in range(profileNames.size()):
 		for j in range(npcs.size()):
 			if(profileNames[i] == npcs[j]):
 				npcProfiles.append(profiles[i])
-	print(npcProfiles)
+	#npcProfiles = RoomManager.activeJunction["npcs"]
+	#print(npcProfiles)
 	avialableCharactersinRoom()
 	pass # Replace with function body.
 
@@ -188,10 +180,12 @@ func continueDialogue(out):
 	
 func _on_D_Option1_Pressed():
 	var out = npcOutcomes[0]
-	if(outComeTypes[0] == npcProfiles[activeNPCIdx].Prefered_diologe_type):
-		playerState["npcs"][activeNPC]["disposition"] = playerState["npcs"][activeNPC]["disposition"] + dispRate
-		print(playerState["npcs"][activeNPC]["disposition"])
-		print(dispRate)
+	#var outType = 
+	#this functionality would add ability to access secret options if the character likes the player
+	#if(out == npcProfiles[activeNPCIdx].Prefered_diologe_type):
+		#playerState["npcs"][activeNPC]["disposition"] = playerState["npcs"][activeNPC]["disposition"] + dispRate
+		#print(playerState["npcs"][activeNPC]["disposition"])
+		#print(dispRate)
 	if(out == 100):
 		playerState["npcs"][activeNPC]["dialoguePathIDs"].append(pathID)
 		hideControl()
@@ -232,8 +226,9 @@ func _on_D_OptionSecret_Pressed():
 	
 func avialableCharactersinRoom():
 	var room = RoomManager.activeJunction 
+	var npcs = RoomManager.activeJunction["npcs"]
 	if(room):
-		#var npcs = room["npcs"]
+		npcs = RoomManager.activeJunction["npcs"]
 		for i in range(4):
 			if(i < npcs.size()):
 				match i:
@@ -262,57 +257,58 @@ func avialableCharactersinRoom():
 				
 func enterDialogueWith(npc):
 	activeNPC = npc
-	for i in range(npcs.size()):
+	for i in range(npcProfiles.size()):
 		if(npc == npcProfiles[i].Name):
 			activeNPCIdx = i
 			CharacterName.text = npc
 			if(!playerState["npcs"][npc]["hasEncountered"]):
-				var D1 = npcProfiles[i].get_child(0)
-				firstText.text = D1.Diologue_text_initial
-				secondText.text = D1.Diologue_text_leading
-				charDialogeFirst.text = D1.Char_Diologue_first_option
-				charDialogeSecond.text = D1.Char_Diologue_second_option
-				charDialogeThird.text = D1.Char_Diologue_third_option
-				charDialogeSecret.text = D1.Char_Diologue_secret_option
-				npcOutcomes = [D1.Char_Diologue_first_option_outcome, D1.Char_Diologue_second_option_outcome, D1.Char_Diologue_third_option_outcome, D1.Char_Diologue_secret_option_outcome]
-				outComeTypes = [D1.Char_Diologue_first_option_type,D1.Char_Diologue_second_option_type,D1.Char_Diologue_third_option_type,D1.Char_Diologue_secret_option_type]
-				pathID = D1.Diologue_path_id
+				if(npcProfiles[i].get_child_count() > 0):
+					var D1 = npcProfiles[i].get_child(0)
+
+					firstText.text = D1.Diologue_text_initial
+					secondText.text = D1.Diologue_text_leading
+					charDialogeFirst.text = D1.Char_Diologue_first_option
+					charDialogeSecond.text = D1.Char_Diologue_second_option
+					charDialogeThird.text = D1.Char_Diologue_third_option
+					charDialogeSecret.text = D1.Char_Diologue_secret_option
+					npcOutcomes = [D1.Char_Diologue_first_option_outcome, D1.Char_Diologue_second_option_outcome, D1.Char_Diologue_third_option_outcome, D1.Char_Diologue_secret_option_outcome]
+					outComeTypes = [D1.Char_Diologue_first_option_type,D1.Char_Diologue_second_option_type,D1.Char_Diologue_third_option_type,D1.Char_Diologue_secret_option_type]
+					pathID = D1.Diologue_path_id
 
 				#print(npcOutcomes)
 				playerState["npcs"][npc]["hasEncountered"] = true
 			elif(playerState["npcs"][npc]["hasEncountered"]):
-				var D = npcProfiles[i].get_child(playerState["npcs"][activeNPC]["dialoguePosition"])
-				firstText.text = D.Diologue_text_initial
-				secondText.text = D.Diologue_text_leading
-				charDialogeFirst.text = D.Char_Diologue_first_option
-				charDialogeSecond.text = D.Char_Diologue_second_option
-				charDialogeThird.text = D.Char_Diologue_third_option
-				var pIDs = playerState["npcs"][activeNPC]["dialoguePathIDs"]
-				var isSecretVisable = false
-				#print(pIDs , "requisite:" , D.Char_Diologue_secret_option_requisite)
-				for ID in pIDs:
-					var ID_Match = D.Char_Diologue_secret_option_requisite == ID
-					if(ID_Match):
-						#print("match")
-						isSecretVisable = isSecretVisable || ID_Match
-						
-				dispRate = npcProfiles[i].DispositionRate
-				var disp = playerState["npcs"][activeNPC]["disposition"]
-				var dispThresh = D.Char_Diologue_secret_option_dispositon
-				if(disp >= dispThresh and dispThresh != 0):
-					isSecretVisable = true
-				if(isSecretVisable):
-					charDialogeSecret.visible = true
-					charDialogeSecret.text = D.Char_Diologue_secret_option
-				else:
-					charDialogeSecret.visible = false
-				
-						
+				if(npcProfiles[i].get_child_count() > 0):
 
-				
-				npcOutcomes = [D.Char_Diologue_first_option_outcome, D.Char_Diologue_second_option_outcome, D.Char_Diologue_third_option_outcome, D.Char_Diologue_secret_option_outcome]
-				outComeTypes = [D.Char_Diologue_first_option_type,D.Char_Diologue_second_option_type,D.Char_Diologue_third_option_type,D.Char_Diologue_secret_option_type]
-				pathID = D.Diologue_path_id
+					var D = npcProfiles[i].get_child(playerState["npcs"][activeNPC]["dialoguePosition"])
+					firstText.text = D.Diologue_text_initial
+					secondText.text = D.Diologue_text_leading
+					charDialogeFirst.text = D.Char_Diologue_first_option
+					charDialogeSecond.text = D.Char_Diologue_second_option
+					charDialogeThird.text = D.Char_Diologue_third_option
+					var pIDs = playerState["npcs"][activeNPC]["dialoguePathIDs"]
+					var isSecretVisable = false
+					#print(pIDs , "requisite:" , D.Char_Diologue_secret_option_requisite)
+					for ID in pIDs:
+						var ID_Match = D.Char_Diologue_secret_option_requisite == ID
+						if(ID_Match):
+							#print("match")
+							isSecretVisable = isSecretVisable || ID_Match
+							
+					dispRate = npcProfiles[i].DispositionRate
+					var disp = playerState["npcs"][activeNPC]["disposition"]
+					var dispThresh = D.Char_Diologue_secret_option_dispositon
+					if(disp >= dispThresh and dispThresh != 0):
+						isSecretVisable = true
+					if(isSecretVisable):
+						charDialogeSecret.visible = true
+						charDialogeSecret.text = D.Char_Diologue_secret_option
+					else:
+						charDialogeSecret.visible = false
+					
+					npcOutcomes = [D.Char_Diologue_first_option_outcome, D.Char_Diologue_second_option_outcome, D.Char_Diologue_third_option_outcome, D.Char_Diologue_secret_option_outcome]
+					outComeTypes = [D.Char_Diologue_first_option_type,D.Char_Diologue_second_option_type,D.Char_Diologue_third_option_type,D.Char_Diologue_secret_option_type]
+					pathID = D.Diologue_path_id
 
 				pass
 			else:
@@ -324,40 +320,49 @@ func enterDialogueWith(npc):
 
 func _on_southwest_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/southwest/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true
 
 func _on_west_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/west/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
+
 	hideControl()
 	options.visible = true
 
 func _on_northwest_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/northwest/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true
 
 func _on_north_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/north/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true
 
 func _on_northeast_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/northeast/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true
 
 func _on_east_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/east/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true
 
 func _on_southeast_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/southeast/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true
 
 func _on_south_texture_button_pressed() -> void:
 	RoomManager.set_active_junction($junctions/south/Label.text)
+	junction_changed.emit(RoomManager.activeJunction)
 	hideControl()
 	options.visible = true

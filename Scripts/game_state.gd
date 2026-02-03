@@ -44,19 +44,30 @@ static var stateTemp: Dictionary = {
 }
 
 
-var plyerNpcInfo = {
+var playerNpcInfo = {
 		"hasEncountered" : false,
 		"dialoguePosition" : 0,
 		"dialoguePathIDs" : [],
 		"disposition" : 50
 }
 
+#var NPC_NAMES = ["janice","robert","jim","mia", "jani", "sandi","cheg", "johan", "angelo", "kyle", "phelicia", "craig", "hilda", "skye"] 
 
 var playerEncounters = {
 	"npcs" : {
-		"janice": plyerNpcInfo.duplicate(),
-		"robert": plyerNpcInfo.duplicate(),
-		"jim": plyerNpcInfo.duplicate(),
-		"mia": plyerNpcInfo.duplicate(),
+		"janice": playerNpcInfo.duplicate(),
+		"robert": playerNpcInfo.duplicate(),
+		"jim": playerNpcInfo.duplicate(),
+		"mia": playerNpcInfo.duplicate(),
+		 "jani": playerNpcInfo.duplicate(),
+		 "sandi": playerNpcInfo.duplicate(),
+		"cheg": playerNpcInfo.duplicate(),
+		 "johan": playerNpcInfo.duplicate(),
+		 "angelo": playerNpcInfo.duplicate(),
+		 "kyle": playerNpcInfo.duplicate(),
+		 "phelic": playerNpcInfo.duplicate(),
+		 "craig": playerNpcInfo.duplicate(),
+		 "hilda": playerNpcInfo.duplicate(),
+		 "skye": playerNpcInfo.duplicate()
 	}
 }
