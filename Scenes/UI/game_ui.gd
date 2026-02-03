@@ -262,7 +262,7 @@ func enterDialogueWith(npc):
 			activeNPCIdx = i
 			CharacterName.text = npc
 			if(!playerState["npcs"][npc]["hasEncountered"]):
-				if(npcProfiles[i].get_child_count() > 0):
+				if(npcProfiles[i].get_child_count() > 0): #does npc have any dialogue?
 					var D1 = npcProfiles[i].get_child(0)
 
 					firstText.text = D1.Diologue_text_initial
@@ -274,6 +274,13 @@ func enterDialogueWith(npc):
 					npcOutcomes = [D1.Char_Diologue_first_option_outcome, D1.Char_Diologue_second_option_outcome, D1.Char_Diologue_third_option_outcome, D1.Char_Diologue_secret_option_outcome]
 					outComeTypes = [D1.Char_Diologue_first_option_type,D1.Char_Diologue_second_option_type,D1.Char_Diologue_third_option_type,D1.Char_Diologue_secret_option_type]
 					pathID = D1.Diologue_path_id
+				else: #default npc dialogue if npc has no dialogue options present
+					firstText.text = "..."
+					secondText.text = ""
+					charDialogeFirst.text = "..."
+					charDialogeSecond.text = "..."
+					charDialogeThird.text = "..."
+					npcOutcomes = [100,100,100,100]
 
 				#print(npcOutcomes)
 				playerState["npcs"][npc]["hasEncountered"] = true
@@ -309,6 +316,14 @@ func enterDialogueWith(npc):
 					npcOutcomes = [D.Char_Diologue_first_option_outcome, D.Char_Diologue_second_option_outcome, D.Char_Diologue_third_option_outcome, D.Char_Diologue_secret_option_outcome]
 					outComeTypes = [D.Char_Diologue_first_option_type,D.Char_Diologue_second_option_type,D.Char_Diologue_third_option_type,D.Char_Diologue_secret_option_type]
 					pathID = D.Diologue_path_id
+				else: #default npc dialogue if npc has no dialogue options present
+					firstText.text = "..."
+					secondText.text = ""
+					charDialogeFirst.text = "..."
+					charDialogeSecond.text = "..."
+					charDialogeThird.text = "..."
+					npcOutcomes = [100,100,100,100]
+
 
 				pass
 			else:
